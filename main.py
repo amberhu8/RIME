@@ -8,7 +8,6 @@ import environments
 
 if __name__ == '__main__':
     start_time = datetime.now()
-    start_time_str = start_time.strftime("%Y-%m-%d_%H-%M-%S")
     args = get_args()
 
     if args.sampled_envs == 2:
@@ -173,7 +172,7 @@ if __name__ == '__main__':
         avg_record_perf = np.mean(np.concatenate(record_perf, axis=1), axis=1)
         std_record_perf = np.std(np.concatenate(record_perf, axis=1), axis=1)
 
-        rec_save_path = 'results/' + str(data[0][-1]) + start_time_str
+        rec_save_path = 'results/' + str(data[0][-1])
         np.savez(rec_save_path, record_perf=[avg_record_perf, std_record_perf], allow_pickle=True)
 
         gail1, par1, limku, limkl = expert_gail(args.expert_path1, args.env_parameter)
@@ -209,7 +208,7 @@ if __name__ == '__main__':
         std_record_perf_2par_gm = np.std(np.concatenate(record_perf, axis=1), axis=1)
         perf_2par_gm = np.reshape(avg_record_perf_2par_gm, (6, 6))
 
-        rec_save_path = 'results/' + str(data[0][-1]) + start_time_str # data[2] is excute_name
+        rec_save_path = 'results/' + str(data[0][-1]) # data[2] is excute_name
 
         np.savez(rec_save_path, record_perf_2par_gm=[avg_record_perf_2par_gm, std_record_perf_2par_gm], allow_pickle=True)
 
